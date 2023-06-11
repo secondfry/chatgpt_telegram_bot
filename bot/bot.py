@@ -398,7 +398,7 @@ async def new_dialog_handle(update: Update, context: CallbackContext):
     await update.message.reply_text("Starting new dialog ✅")
 
     chat_mode = db.get_user_attribute(user_id, "current_chat_mode")
-    await update.message.reply_text(f"{config.chat_modes[chat_mode]['welcome_message']}", parse_mode=ParseMode.HTML)
+    await update.message.reply_text(f"{config.chat_modes[chat_mode]['welcome_message']}\n\nPrompt:\n{config.chat_modes[chat_mode]['prompt_start']}", parse_mode=ParseMode.HTML)
 
 
 async def cancel_handle(update: Update, context: CallbackContext):
@@ -498,7 +498,7 @@ async def set_chat_mode_handle(update: Update, context: CallbackContext):
 
     await context.bot.send_message(
         update.callback_query.message.chat.id,
-        f"{config.chat_modes[chat_mode]['welcome_message']}",
+        f"{config.chat_modes[chat_mode]['welcome_message']}\n\nPrompt:\n{config.chat_modes[chat_mode]['prompt_start']}",
         parse_mode=ParseMode.HTML
     )
 
